@@ -1,10 +1,10 @@
 var palindrone = require('../src/palindrone.js');
 describe("Palindrone test suite", function() {
 	it('should detect palindromic sequences', function(){
-		expect(palindrone.prototype.isSequencePalindromic('a'))
+		expect(palindrone.fn.isSequencePalindromic('a'))
 		.toBe(true);
 
-		expect(palindrone.prototype.isSequencePalindromic('aba'))
+		expect(palindrone.fn.isSequencePalindromic('aba'))
 		.toBe(true);
 	});
 });

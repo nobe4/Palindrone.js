@@ -6,9 +6,9 @@
 
 (function (undefined) {
 	var palindrone = function(searchedSequence){
-		palindrone.prototype.init(searchedSequence);
-		palindrone.prototype.findPalindromicSequences();
-		palindrone.prototype.sortFoundPalindromicSequences();
+		palindrone.fn.init(searchedSequence);
+		palindrone.fn.findPalindromicSequences();
+		palindrone.fn.sortFoundPalindromicSequences();
 		return palindrone.foundPalindromicSequences.slice(0,3);
 	};
 
@@ -16,7 +16,7 @@
 	palindrone.searchedSequenceLength = 0;
 	palindrone.foundPalindromicSequences = [];
 
-	palindrone.prototype = {
+	palindrone.prototype = palindrone.fn = {
 
 		init: function (searchedSequence) {
 			palindrone.searchedSequence = searchedSequence;
@@ -42,7 +42,7 @@
 		findPalindromicSequences: function(){
 			for(var iteratorStart = 0; iteratorStart < palindrone.searchedSequenceLength - 2; iteratorStart ++){
 				for(var iteratorEnd = iteratorStart + 1; iteratorEnd < palindrone.searchedSequenceLength; iteratorEnd ++){
-					if(palindrone.prototype.isSequencePalindromic(iteratorStart, iteratorEnd)) {
+					if(palindrone.fn.isSequencePalindromic(iteratorStart, iteratorEnd)) {
 						palindrone.foundPalindromicSequences.push({
 							'start': iteratorStart,
 							'length': iteratorEnd - iteratorStart + 1,
