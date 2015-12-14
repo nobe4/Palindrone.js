@@ -21,6 +21,7 @@
 		init: function (searchedSequence) {
 			palindrone.searchedSequence = searchedSequence;
 			palindrone.searchedSequenceLength = searchedSequence.length;
+			palindrone.foundPalindromicSequences = [];
 		},
 
 		isSequencePalindromic: function(iteratorStart, iteratorEnd){
