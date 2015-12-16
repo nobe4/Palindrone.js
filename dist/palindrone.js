@@ -33,7 +33,7 @@
 		// A palindrome start in its center, test every center the sequence has
 		// and expands the boundaries low and up
 		findPalindromicSequences: function(){
-			for(var center = 0; center < palindrone.searchedSequenceLength * 2; center += 1){
+			for(var center = 1; center < palindrone.searchedSequenceLength * 2; center += 1){
 				try{
 					var boundaries = palindrone.fn.testCenter(center);
 					palindrone.foundPalindromicSequences.push({
