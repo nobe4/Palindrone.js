@@ -30,6 +30,40 @@
 			});
 		},
 
+		// A palindrome start in its center, test every center the sequence has
+		// and expands the boundaries low and up
+		findPalindromicSequences: function(){
+			for(var center = 0; center < palindrone.searchedSequenceLength * 2; center += 1){
+				try{
+					var boundaries = palindrone.fn.testCenter(center);
+					palindrone.foundPalindromicSequences.push({
+						'index': boundaries.low,
+						'length': boundaries.up - boundaries.low + 1,
+						'content': palindrone.searchedSequence.slice(boundaries.low, boundaries.up + 1)
+					});
+				} catch (e){
+					// No palindrome found.
+				}
+			}
+		},
+
+		testCenter: function(center){
+			var lowBound = Math.floor(center / 2);
+			var upBound = lowBound + center%2;
+
+			// we don't need to test if a single character is a palindrome
+			if(lowBound === upBound){
+				lowBound --;
+				upBound ++;
+			}
+
+			if(palindrone.searchedSequence[upBound] === palindrone.searchedSequence[lowBound]){
+				return palindrone.fn.testBoundaries(lowBound, upBound);
+			} else {
+				throw new Error('Center does not create a palindrome');
+			}
+		},
+
 		testBoundaries: function(lowBound, upBound){
 			var boundaries = {
 				'low': lowBound,
@@ -43,39 +77,6 @@
 				boundaries = palindrone.fn.testBoundaries(lowBound, upBound);
 			}
 			return boundaries;
-		},
-
-		testCenter: function(center){
-			var upBound, lowBound;
-			if(center % 1 === 0) {
-				upBound = center + 1;
-				lowBound = center - 1;
-			} else {
-				upBound = Math.ceil(center);
-				lowBound = Math.floor(center);
-			}
-			if(palindrone.searchedSequence[upBound] === palindrone.searchedSequence[lowBound]){
-				return palindrone.fn.testBoundaries(lowBound, upBound);
-			} else {
-				throw new Error('Center does not create a palindrome');
-			}
-		},
-
-		// A palindrome start in its center, test every center the sequence has
-		// and expands the boundaries low and up
-		findPalindromicSequences: function(){
-			for(var center = 0.5; center < palindrone.searchedSequenceLength; center += 0.5){
-				try{
-					var boundaries = palindrone.fn.testCenter(center);
-					palindrone.foundPalindromicSequences.push({
-						'start': boundaries.low,
-						'length': boundaries.up - boundaries.low + 1,
-						'content': palindrone.searchedSequence.slice(boundaries.low, boundaries.up + 1)
-					});
-				} catch (e){
-					// No palindrome found.
-				}
-			}
 		}
 	};
 
