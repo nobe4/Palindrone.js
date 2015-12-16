@@ -30,19 +30,21 @@
 			});
 		},
 
-		testBoundaries: function(lowBound, upBound){
-			var boundaries = {
-				'low': lowBound,
-				'up': upBound
-			};
-			lowBound -= 1;
-			upBound += 1;
-			if(palindrone.searchedSequenceLength > upBound &&
-				 0 <= lowBound &&
-					 palindrone.searchedSequence[upBound] === palindrone.searchedSequence[lowBound]){
-				boundaries = palindrone.fn.testBoundaries(lowBound, upBound);
+		// A palindrome start in its center, test every center the sequence has
+		// and expands the boundaries low and up
+		findPalindromicSequences: function(){
+			for(var center = 0.5; center < palindrone.searchedSequenceLength; center += 0.5){
+				try{
+					var boundaries = palindrone.fn.testCenter(center);
+					palindrone.foundPalindromicSequences.push({
+						'index': boundaries.low,
+						'length': boundaries.up - boundaries.low + 1,
+						'content': palindrone.searchedSequence.slice(boundaries.low, boundaries.up + 1)
+					});
+				} catch (e){
+					// No palindrome found.
+				}
 			}
-			return boundaries;
 		},
 
 		testCenter: function(center){
@@ -61,21 +63,19 @@
 			}
 		},
 
-		// A palindrome start in its center, test every center the sequence has
-		// and expands the boundaries low and up
-		findPalindromicSequences: function(){
-			for(var center = 0.5; center < palindrone.searchedSequenceLength; center += 0.5){
-				try{
-					var boundaries = palindrone.fn.testCenter(center);
-					palindrone.foundPalindromicSequences.push({
-						'start': boundaries.low,
-						'length': boundaries.up - boundaries.low + 1,
-						'content': palindrone.searchedSequence.slice(boundaries.low, boundaries.up + 1)
-					});
-				} catch (e){
-					// No palindrome found.
-				}
+		testBoundaries: function(lowBound, upBound){
+			var boundaries = {
+				'low': lowBound,
+				'up': upBound
+			};
+			lowBound -= 1;
+			upBound += 1;
+			if(palindrone.searchedSequenceLength > upBound &&
+				 0 <= lowBound &&
+					 palindrone.searchedSequence[upBound] === palindrone.searchedSequence[lowBound]){
+				boundaries = palindrone.fn.testBoundaries(lowBound, upBound);
 			}
+			return boundaries;
 		}
 	};
 
