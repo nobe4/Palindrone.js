@@ -6,10 +6,20 @@ describe('Palindrone test suite', function() {
 		expect(palindrone.foundPalindromicSequences.length)
 		.toBe(0);
 
+		palindrone.fn.init('k');
+		palindrone.fn.findPalindromicSequences();
+		expect(palindrone.foundPalindromicSequences.length)
+		.toBe(0);
+
 		palindrone.fn.init('no palindrome');
 		palindrone.fn.findPalindromicSequences();
 		expect(palindrone.foundPalindromicSequences.length)
 		.toBe(0);
+
+		palindrone.fn.init('aa');
+		palindrone.fn.findPalindromicSequences();
+		expect(palindrone.foundPalindromicSequences.length)
+		.toBe(1);
 
 		palindrone.fn.init('only 1 palindrome');
 		palindrone.fn.findPalindromicSequences();
