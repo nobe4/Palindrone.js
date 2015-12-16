@@ -1,6 +1,8 @@
 Palindrone.js 1.0.0
 ---
 
+[![Build Status](https://travis-ci.org/nobe4/Palindrone.js.svg?branch=master)](https://travis-ci.org/nobe4/Palindrone.js)
+
 Javascript library for finding palindromes in a string.
 
     var palindromes = palindrone('A palindromic sequence. Or is it?');
