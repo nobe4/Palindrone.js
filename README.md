@@ -1,4 +1,4 @@
-Palindrone.js 1.0.0
+[Palindrone.js](http://nobe4.fr/Palindrone.js/) 1.0.0
 ---
 
 [![Build Status](https://travis-ci.org/nobe4/Palindrone.js.svg?branch=master)](https://travis-ci.org/nobe4/Palindrone.js)
